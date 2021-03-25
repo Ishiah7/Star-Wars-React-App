@@ -13,6 +13,7 @@ const PeopleType = new GraphQLObjectType({
         skin_color: { type: GraphQLString },
         eye_color: { type: GraphQLString },
         birth_year: { type: GraphQLString },
+        gender: { type: GraphQLString },
     })
 })
 
