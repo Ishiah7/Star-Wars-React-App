@@ -39,10 +39,10 @@ const RootQuery = new GraphQLObjectType({
         person: {
             type: PeopleType,
             args: {
-                height: {type: GraphQLString}
+                name: {type: GraphQLString}
             },
             resolve(parent : any, args : any){
-                return axios.get(`https://swapi.dev/api/people/${args.height}`)
+                return axios.get(`https://swapi.dev/api/people/${args.name}`)
                     .then((res : { data: any; }) => res.data);
             }
         }
