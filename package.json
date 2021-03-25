@@ -1,0 +1,32 @@
+{
+  "name": "star-was-react-app",
+  "version": "1.0.0",
+  "description": "React App that displays Star Wars Characters",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./compiled-scripts/server.js",
+    "server": "nodemon ./compiled-scripts/server.js",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ishiah7/Star-Was-React-App.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ishiah7/Star-Was-React-App/issues"
+  },
+  "homepage": "https://github.com/Ishiah7/Star-Was-React-App#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.35",
+    "nodemon": "^2.0.7",
+    "typescript": "^4.2.3"
+  }
+}
