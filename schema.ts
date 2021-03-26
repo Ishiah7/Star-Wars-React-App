@@ -3,23 +3,31 @@ const axios = require('axios');
 
 // GraphQL Object Type for people.
 
+
 const PeopleType = new GraphQLObjectType({
     name : 'People',
     fields: () => ({
         name: { type: GraphQLString },
         height: { type: GraphQLString },
         mass: { type: GraphQLString },
-        hair_color: { type: GraphQLString },
-        skin_color: { type: GraphQLString },
-        eye_color: { type: GraphQLString },
-        birth_year: { type: GraphQLString },
         gender: { type: GraphQLString },
+        homeworld: { type: GraphQLString },
+    })
+})
+
+const HomeworldType = new GraphQLObjectType({
+    name: 'Homeworld',
+    fields: () => ({
+        name: { type: GraphQLString },
+        rotation_period: { type: GraphQLString },
+        orbital_period: { type: GraphQLString }, 
     })
 })
 
 
 
-// Root Query
+
+// Root Query / Resolvers
 
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
@@ -29,21 +37,21 @@ const RootQuery = new GraphQLObjectType({
 
         people: {
             type: new GraphQLList(PeopleType),
-            resolve() {
+            resolve(parent: any) {
                 return axios.get('https://swapi.dev/api/people')
                     .then((res: { data: any; })  => res.data.results)
             }
-        },
+        },      
 
         // resolves one person depending on the search query.
 
         person: {
             type: PeopleType,
             args: {
-                name: {type: GraphQLString}
+                id: {type: GraphQLString}
             },
             resolve(parent : any, args : any){
-                return axios.get(`https://swapi.dev/api/people/${args.name}`)
+                return axios.get(`https://swapi.dev/api/people/${args.id}/`)
                     .then((res : { data: any; }) => res.data);
             }
         }
