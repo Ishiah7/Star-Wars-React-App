@@ -11,7 +11,14 @@ const PeopleType = new GraphQLObjectType({
         height: { type: GraphQLString },
         mass: { type: GraphQLString },
         gender: { type: GraphQLString },
-        homeworld: { type: GraphQLString },
+        homeworld_link: { type: GraphQLString },
+        homeworld: { 
+            type: GraphQLString,
+            resolve(parent:any, args:any){
+                return axios.get(parent.homeworld)
+                .then((res: { data: any; })  => res.data.name)
+            }
+        },
     })
 })
 
@@ -27,7 +34,7 @@ const HomeworldType = new GraphQLObjectType({
 
 
 
-// Root Query / Resolvers
+// Root Query 
 
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
@@ -54,6 +61,17 @@ const RootQuery = new GraphQLObjectType({
                 return axios.get(`https://swapi.dev/api/people/${args.id}/`)
                     .then((res : { data: any; }) => res.data);
             }
+        },
+
+        pageSearch: {
+            type: new GraphQLList(PeopleType),
+            args: {
+                page_number: {type: GraphQLString}
+            },
+            resolve(parent: any, args: any) {
+                return axios.get(`https://swapi.dev/api/people/?page=${args.page_number}`)
+                    .then((res: { data: any; })  => res.data.results)
+            } 
         }
     }
 })
