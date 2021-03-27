@@ -59,7 +59,17 @@ const RootQuery = new GraphQLObjectType({
                 return axios.get(`https://swapi.dev/api/people/?page=${args.page_number}`)
                     .then((res) => res.data.results);
             }
-        }
+        },
+        characterSearch: {
+            type: new GraphQLList(PeopleType),
+            args: {
+                character: { type: GraphQLString }
+            },
+            resolve(parent, args) {
+                return axios.get(`https://swapi.dev/api/people/?search=${args.character}`)
+                    .then((res) => res.data.results);
+            }
+        },
     }
 });
 // exporting GraphQL Schema
