@@ -19,6 +19,7 @@ const PeopleType = new GraphQLObjectType({
         },
     })
 });
+// GraphQL Object Type for people.
 const HomeworldType = new GraphQLObjectType({
     name: 'Homeworld',
     fields: () => ({
