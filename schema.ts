@@ -1,8 +1,9 @@
 const { GraphQLObjectType, GraphQLInt, GraphQLString, GraphQLBoolean, GraphQLList, GraphQLSchema, GraphQLID }  = require('graphql');
 const axios = require('axios');
 
-// GraphQL Object Type for people.
 
+
+// GraphQL Object Type for people.
 
 const PeopleType = new GraphQLObjectType({
     name : 'People',
@@ -21,6 +22,9 @@ const PeopleType = new GraphQLObjectType({
         },
     })
 })
+
+
+// GraphQL Object Type for people.
 
 const HomeworldType = new GraphQLObjectType({
     name: 'Homeworld',
